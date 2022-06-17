@@ -1,6 +1,6 @@
 // Write your helper functions here!
 require('isomorphic-fetch');
-
+window.addEventListener("load", function() {
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
    // Here is the HTML formatting for our mission target div.
    /*
@@ -17,8 +17,18 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 }
 
 function validateInput(testInput) {
-   
-}
+   let form = document.querySelector("testForm");
+   form.addEventListener("formSubmit", function(event){
+    let pilotNameInput = document.querySelector("input[name=pilotName]");
+    let copilotNameInput = document.querySelector("input[name=copilotName]");
+    let fuelLevelInput = document.querySelector("input[name=fuelLevel]");
+    let cargoMassInput = document.querySelector("input[name=cargoMass]");
+    if (pilotNameInput.value === "" || copilotNameInput.value === "" || fuelLevelInput.value === "" || cargoMassInput.value === "") {
+        alert("All fields are required!");
+        event.preventDefault();
+    }
+   })
+};
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
    
@@ -34,6 +44,7 @@ async function myFetch() {
 }
 
 function pickPlanet(planets) {
+}
 }
 
 module.exports.addDestinationInfo = addDestinationInfo;
