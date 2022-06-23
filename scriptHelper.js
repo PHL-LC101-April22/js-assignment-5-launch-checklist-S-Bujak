@@ -17,47 +17,72 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 }
 
 function validateInput(testInput) {
+    if (testInput === "" ) {
+        return "Empty"
+    }; 
+    if (isNaN(testInput)) {
+        return "Not a Number"
+    } else {
+        return "Is a Number"
+    };
+
+
+   
+  
+ 
+
+function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
    let button = document.getElementById("formSubmit");
    button.addEventListener("formSubmit", function(event){
     let pilotNameInput = document.querySelector("input[name=pilotName]");
     let copilotNameInput = document.querySelector("input[name=copilotName]");
     let fuelLevelInput = document.querySelector("input[name=fuelLevel]");
     let cargoMassInput = document.querySelector("input[name=cargoMass]");
-    if (pilotNameInput.value === "" || copilotNameInput.value === "" || fuelLevelInput.value === "" || cargoMassInput.value === "") {
-       window.alert("All fields are required!");
-        event.preventDefault();
+    let result = pilotNameInput
+    switch (result) {
+        case "Empty":
+            window.alert("All fields are required!");
+            event.preventDefault();
+            break;
+        case "Is a Number":
+            window.alert("Must be a name!");
+            event.preventDefault();        
     }
-  
-  else if (isNaN(pilotNameInput) == true) {
-    text = "Not a Number";
-}  else if (isNaN(pilotNameInput) == false) {
-    text = "Is a Number";
-    event.preventDefault();
-  }
-   else if (isNaN(copilotNameInput) == true){
-    text = "Not a Number";
-   } else if (!isNaN(copilotNameInput)== false){
-    text = "Is a Number";
-    event.preventDefault();
-   }
-   else if (isNaN(fuelLevelInput)== true){
-    text = "Not a Number";
-    event.preventDefault();
-   } else if (isNaN(fuelLevelInput)== false){
-    text = "Is a Number";
-   }
-   else if (isNaN(cargoMassInput)== true){
-    text = "Not a Number";
-    event.preventDefault();
-   }
-   else if (isNaN(cargoMassInput)== false){
-    text = "Is a Number";
-   }
-}
-};
+    result = copilotNameInput
+    switch (result) {
+        case "Empty":
+            window.alert("All fields are required!");
+            event.preventDefault();
+            break;
+        case "Is a Number":
+            window.alert("Must be a name!"); 
+            event.preventDefault();      
+    }
+    result = fuelLevelInput
+    switch (result) {
+        case "Empty":
+            window.alert("All fields are required!");
+            event.preventDefault();
+            break;
+        case "Not a Number":
+            window.alert("Must be a number!");  
+            event.preventDefault();      
+    }
+    result = cargoMassInput
+    switch (result) {
+        case "Empty":
+            window.alert("All fields are required!");
+            event.preventDefault();
+            break;
+        case "Not a Number":
+            window.alert("Must be a number!");
+            event.preventDefault();       
+    }
+    })
 
-function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-   
+        
+    }
+    }
 }
 
 async function myFetch() {
