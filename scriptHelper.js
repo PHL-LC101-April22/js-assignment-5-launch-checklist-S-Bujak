@@ -17,17 +17,43 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 }
 
 function validateInput(testInput) {
-   let form = document.querySelector("testForm");
-   form.addEventListener("formSubmit", function(event){
+   let button = document.getElementById("formSubmit");
+   button.addEventListener("formSubmit", function(event){
     let pilotNameInput = document.querySelector("input[name=pilotName]");
     let copilotNameInput = document.querySelector("input[name=copilotName]");
     let fuelLevelInput = document.querySelector("input[name=fuelLevel]");
     let cargoMassInput = document.querySelector("input[name=cargoMass]");
     if (pilotNameInput.value === "" || copilotNameInput.value === "" || fuelLevelInput.value === "" || cargoMassInput.value === "") {
-        alert("All fields are required!");
+       window.alert("All fields are required!");
         event.preventDefault();
     }
-   })
+  
+  else if (isNaN(pilotNameInput) == true) {
+    text = "Not a Number";
+}  else if (isNaN(pilotNameInput) == false) {
+    text = "Is a Number";
+    event.preventDefault();
+  }
+   else if (isNaN(copilotNameInput) == true){
+    text = "Not a Number";
+   } else if (!isNaN(copilotNameInput)== false){
+    text = "Is a Number";
+    event.preventDefault();
+   }
+   else if (isNaN(fuelLevelInput)== true){
+    text = "Not a Number";
+    event.preventDefault();
+   } else if (isNaN(fuelLevelInput)== false){
+    text = "Is a Number";
+   }
+   else if (isNaN(cargoMassInput)== true){
+    text = "Not a Number";
+    event.preventDefault();
+   }
+   else if (isNaN(cargoMassInput)== false){
+    text = "Is a Number";
+   }
+}
 };
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
