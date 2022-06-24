@@ -18,12 +18,11 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 
 function validateInput(testInput) {
     if (testInput === "" ) {
-        return "Empty"
-    }; 
-    if (isNaN(testInput)) {
-        return "Not a Number"
+        alert ("Empty")
+    } else if (isNaN(testInput)) {
+        alert ("Not a Number")
     } else {
-        return "Is a Number"
+        alert ("Is a Number")
     };
 
 
@@ -32,13 +31,14 @@ function validateInput(testInput) {
  
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-   let button = document.getElementById("formSubmit");
-   button.addEventListener("formSubmit", function(event){
-    let pilotNameInput = document.querySelector("input[name=pilotName]");
-    let copilotNameInput = document.querySelector("input[name=copilotName]");
-    let fuelLevelInput = document.querySelector("input[name=fuelLevel]");
-    let cargoMassInput = document.querySelector("input[name=cargoMass]");
-    let result = pilotNameInput
+   let form = document.querySelector("testForm");
+   form.addEventListener("submit", function(event){
+    let pilotNameInput = document.getElementById("input[name=pilotName]");
+    let copilotNameInput = document.getElementById("input[name=copilotName]");
+    let fuelLevelInput = document.getElementById("input[name=fuelLevel]");
+    let cargoMassInput = document.getElementById("input[name=cargoMass]");
+    
+    let result = validateInput(pilotNameInput)
     switch (result) {
         case "Empty":
             window.alert("All fields are required!");
@@ -46,9 +46,12 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             break;
         case "Is a Number":
             window.alert("Must be a name!");
-            event.preventDefault();        
+            event.preventDefault(); 
+            break;
+         case "Not a Number":
+            pilotStatus.innerHTML=`${pilotNameInput} is ready for launch`         
     }
-    result = copilotNameInput
+    result = validateInput(copilotNameInput)
     switch (result) {
         case "Empty":
             window.alert("All fields are required!");
@@ -56,9 +59,11 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             break;
         case "Is a Number":
             window.alert("Must be a name!"); 
-            event.preventDefault();      
+            event.preventDefault();  
+        case "Not a Number":
+                copilotStatus.innerHTML=`${copilotNameInput} is ready for launch`        
     }
-    result = fuelLevelInput
+    result = validateInput(fuelLevelInput)
     switch (result) {
         case "Empty":
             window.alert("All fields are required!");
@@ -66,9 +71,17 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             break;
         case "Not a Number":
             window.alert("Must be a number!");  
-            event.preventDefault();      
+            event.preventDefault(); 
     }
-    result = cargoMassInput
+    if (fuelLevelInput < 10000) {
+        list.style.visibility = "visible";
+        fuelStatus.innerHTML="Fuel level too low for launch";
+        document.getElementById("launchStatus").style.color="red";
+        launchStatus.innerHTML="Shuttle not ready for launch"
+
+
+    }
+    result = validateInput(cargoMassInput)
     switch (result) {
         case "Empty":
             window.alert("All fields are required!");
@@ -78,11 +91,17 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             window.alert("Must be a number!");
             event.preventDefault();       
     }
-    })
-
+    if (cargoMassInput > 10000) {
+        list.style.visibility = "visible";
+        fuelStatus.innerHTML="Too much mass for the shuttle to take off.";
+        document.getElementById("launchStatus").style.color="red";
+        launchStatus.innerHTML="Shuttle not ready for launch"
+    }
+    document.getElementById("launchStatus").style.color="green";
+    launchStatus.innerHTML="Shuttle is ready for launch"
         
-    }
-    }
+    })
+    
 }
 
 async function myFetch() {
