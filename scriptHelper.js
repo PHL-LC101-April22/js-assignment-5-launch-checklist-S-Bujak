@@ -35,12 +35,12 @@ function validateInput(testInput) {
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
    let form = document.querySelector("testForm");
    form.addEventListener("submit", function(event){
-    let pilotNameInput = document.getElementById("input[name=pilotName]");
-    let copilotNameInput = document.getElementById("input[name=copilotName]");
-    let fuelLevelInput = document.getElementById("input[name=fuelLevel]");
-    let cargoMassInput = document.getElementById("input[name=cargoMass]");
+    let pilot = document.getElementById("input[name=pilotName]");
+    let copilot= document.getElementById("input[name=copilotName]");
+    let fuelLevel = document.getElementById("input[name=fuelLevel]");
+    let cargoLevel = document.getElementById("input[name=cargoMass]");
     
-    let result = validateInput(pilotNameInput)
+    let result = validateInput(pilot)
     switch (result) {
         case "Empty":
             window.alert("All fields are required!");
@@ -51,9 +51,9 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             event.preventDefault(); 
             break;
          case "Not a Number":
-            pilotStatus.innerHTML=`${pilotNameInput} is ready for launch`         
+            pilotStatus.innerHTML=`${pilot} is ready for launch`         
     }
-    result = validateInput(copilotNameInput)
+    result = validateInput(copilot)
     switch (result) {
         case "Empty":
             window.alert("All fields are required!");
@@ -63,9 +63,9 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             window.alert("Must be a name!"); 
             event.preventDefault();  
         case "Not a Number":
-                copilotStatus.innerHTML=`${copilotNameInput} is ready for launch`        
+                copilotStatus.innerHTML=`${copilot} is ready for launch`        
     }
-    result = validateInput(fuelLevelInput)
+    result = validateInput(fuelLevel)
     switch (result) {
         case "Empty":
             window.alert("All fields are required!");
@@ -75,7 +75,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             window.alert("Must be a number!");  
             event.preventDefault(); 
     }
-    if (fuelLevelInput < 10000) {
+    if (fuelLevel < 10000) {
         list.style.visibility = "visible";
         fuelStatus.innerHTML="Fuel level too low for launch";
         document.getElementById("launchStatus").style.color="red";
@@ -83,7 +83,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
 
     }
-    result = validateInput(cargoMassInput)
+    result = validateInput(cargoLevel)
     switch (result) {
         case "Empty":
             window.alert("All fields are required!");
@@ -93,7 +93,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             window.alert("Must be a number!");
             event.preventDefault();       
     }
-    if (cargoMassInput > 10000) {
+    if (cargoLevel > 10000) {
         list.style.visibility = "visible";
         fuelStatus.innerHTML="Too much mass for the shuttle to take off.";
         document.getElementById("launchStatus").style.color="red";
