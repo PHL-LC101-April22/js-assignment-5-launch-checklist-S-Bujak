@@ -19,13 +19,18 @@ window.addEventListener("load", function() {
       addDestinationInfo(document, aPlanet.name, aPlanet.diameter, aPlanet.star, aPlanet.distance, aPlanet.moons, aPlanet.imageUrl)
 
        let form = document.querySelector("form");
+       let list= document.getElementById("faultyItems");
+       list.style.visibility="";
    form.addEventListener("submit", function(event){
     event.preventDefault();
-    let pilot = document.querySelector("input[name=pilotName]").value;   
- let copilot= document.querySelector("input[name=copilotName]").value;
-    let fuelLevel = document.querySelector("input[name=fuelLevel]").value;
-    let cargoLevel = document.querySelector("input[name=cargoMass]").value;
-  
+    let pilotInput = document.querySelector("input[name=pilotName]");
+let pilot = pilotInput.value;
+ let copilotInput= document.querySelector("input[name=copilotName]");
+ let copilot = copilotInput.value;
+    let fuelLevelInput = document.querySelector("input[name=fuelLevel]");
+    let fuelLevel = Number(fuelLevelInput.value);
+    let cargoLevelInput = document.querySelector("input[name=cargoMass]");
+  let cargoLevel = Number(cargoLevelInput.value);
     formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel)
        
     })
