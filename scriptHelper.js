@@ -1,6 +1,6 @@
 // Write your helper functions here!
 require('isomorphic-fetch');
-window.addEventListener("load", function() {
+
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
    
     div= document.getElementById("missionTarget");
@@ -76,7 +76,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             event.preventDefault(); 
     }
     if (fuelLevel < 10000) {
-        list.style.visibility = "visible";
+        document.getElementById("faultyItems").style.visibility = "visible";
         fuelStatus.innerHTML="Fuel level too low for launch";
         document.getElementById("launchStatus").style.color="red";
         launchStatus.innerHTML="Shuttle not ready for launch"
@@ -94,7 +94,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             event.preventDefault();       
     }
     if (cargoLevel > 10000) {
-        list.style.visibility = "visible";
+        document.getElementById("faultyItems").style.visibility = "visible";
         fuelStatus.innerHTML="Too much mass for the shuttle to take off.";
         document.getElementById("launchStatus").style.color="red";
         launchStatus.innerHTML="Shuttle not ready for launch"
@@ -102,9 +102,9 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     document.getElementById("launchStatus").style.color="green";
     launchStatus.innerHTML="Shuttle is ready for launch"
         
-    })
+    }
     
-}
+
 
 async function myFetch() {
     let planetsReturned;
@@ -122,7 +122,7 @@ async function myFetch() {
 function pickPlanet(planets) {
     return Math.floor(Math.random(planetsReturned) *6);
 }
-}),
+
 
 
 module.exports.addDestinationInfo = addDestinationInfo;

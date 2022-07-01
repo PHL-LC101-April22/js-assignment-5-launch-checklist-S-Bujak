@@ -19,7 +19,7 @@ window.addEventListener("load", function() {
       addDestinationInfo(document, aPlanet.name, aPlanet.diameter, aPlanet.star, aPlanet.distance, aPlanet.moons, aPlanet.imageUrl)
 
        let form = document.querySelector("testForm");
-   form.addEventListener("submit", function(event){
+   form.addEventListener("formSubmit", function(event){
     event.preventDefault();
     let pilot = document.querySelector("input[name=pilotName.]").value;   
  let copilot= document.querySelector("input[name=copilotName]").value;
