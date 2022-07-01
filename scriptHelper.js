@@ -2,7 +2,8 @@
 require('isomorphic-fetch');
 window.addEventListener("load", function() {
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
-   div= document.getElementById("missionTarget");
+   
+    div= document.getElementById("missionTarget");
    div.innerHTML = `
    
                 <h2>Mission Destination</h2>
@@ -33,12 +34,11 @@ function validateInput(testInput) {
  
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-   let form = document.querySelector("testForm");
-   form.addEventListener("submit", function(event){
-    let pilot = document.getElementById("input[name=pilotName]");
+    let pilot = document.getElementById("input[name=pilotName.]");   
     let copilot= document.getElementById("input[name=copilotName]");
-    let fuelLevel = document.getElementById("input[name=fuelLevel]");
-    let cargoLevel = document.getElementById("input[name=cargoMass]");
+       let fuelLevel = document.getElementById("input[name=fuelLevel]");
+       let cargoLevel = document.getElementById("input[name=cargoMass]");
+     
     
     let result = validateInput(pilot)
     switch (result) {
