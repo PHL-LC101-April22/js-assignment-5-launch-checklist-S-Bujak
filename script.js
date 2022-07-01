@@ -20,7 +20,8 @@ window.addEventListener("load", function() {
 
        let form = document.querySelector("form");
        let list= document.getElementById("faultyItems");
-       list.style.visibility="";
+       //list.style.visibility="visible";
+
    form.addEventListener("submit", function(event){
     event.preventDefault();
     let pilotInput = document.querySelector("input[name=pilotName]");

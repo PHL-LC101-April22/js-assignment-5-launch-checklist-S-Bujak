@@ -21,11 +21,11 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 
 function validateInput(testInput) {
     if (testInput === "" ) {
-        alert ("Empty")
+        return ("Empty")
     } else if (isNaN(testInput)) {
-        alert ("Not a Number")
+        return ("Not a Number")
     } else {
-        alert ("Is a Number")
+        return ("Is a Number")
     };
 
 }
@@ -34,12 +34,13 @@ function validateInput(testInput) {
  
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-    let pilotStatus = document.getElementById("pilotStatus]");   
+    let pilotStatus = document.getElementById("pilotStatus");   
     let copilotStatus= document.getElementById("copilotStatus");
-       let fuelStatus = document.getElementById("fuelStatus");
-       let cargoLevelStatus = document.getElementById("cargoStatus");
-     
-    
+    let fuelStatus = document.getElementById("fuelStatus");
+    let cargoLevelStatus = document.getElementById("cargoStatus");
+    let launchStatus = document.getElementById("launchStatus");
+    list= document.getElementById("faultyItems");
+       //list.style.visibility="visible";
     let result = validateInput(pilot)
     switch (result) {
         case "Empty":
@@ -76,13 +77,13 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             event.preventDefault(); 
     }
     if (fuelLevel < 10000) {
-        document.getElementById("faultyItems").style.visibility = "visible";
+        list.style.visibility = "visible";
         fuelStatus.innerHTML="Fuel level too low for launch";
-        document.getElementById("launchStatus").style.color="red";
+        launchStatus.style.color="red";
         launchStatus.innerHTML="Shuttle not ready for launch"
+    } else {document.getElementById("launchStatus").style.color="green";
+    launchStatus.innerHTML="Shuttle is ready for launch"};
 
-
-    }
     result = validateInput(cargoLevel)
     switch (result) {
         case "Empty":
@@ -94,13 +95,12 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             event.preventDefault();       
     }
     if (cargoLevel > 10000) {
-        document.getElementById("faultyItems").style.visibility = "visible";
+        list.style.visibility = "visible";
         cargoLevelStatus.innerHTML="Too much mass for the shuttle to take off.";
-        document.getElementById("launchStatus").style.color="red";
+        launchStatus.style.color="red";
         launchStatus.innerHTML="Shuttle not ready for launch"
-    }
-    document.getElementById("launchStatus").style.color="green";
-    launchStatus.innerHTML="Shuttle is ready for launch"
+    } else {document.getElementById("launchStatus").style.color="green";
+    launchStatus.innerHTML="Shuttle is ready for launch"};
         
     }
     
