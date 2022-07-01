@@ -76,13 +76,13 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             window.alert("Must be a number!");  
             event.preventDefault(); 
     }
-    if (fuelLevel < 10000) {
+    /*if (fuelLevel < 10000) {
         list.style.visibility = "visible";
         fuelStatus.innerHTML="Fuel level too low for launch";
         launchStatus.style.color="red";
         launchStatus.innerHTML="Shuttle not ready for launch"
     } else {document.getElementById("launchStatus").style.color="green";
-    launchStatus.innerHTML="Shuttle is ready for launch"};
+    launchStatus.innerHTML="Shuttle is ready for launch"};*/
 
     result = validateInput(cargoLevel)
     switch (result) {
@@ -94,15 +94,20 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             window.alert("Must be a number!");
             event.preventDefault();       
     }
-    if (cargoLevel > 10000) {
+    if (cargoLevel > 10000 ) {
         list.style.visibility = "visible";
         cargoLevelStatus.innerHTML="Too much mass for the shuttle to take off.";
+        launchStatus.style.color="red";
+        launchStatus.innerHTML="Shuttle not ready for launch"
+    } else if (fuelLevel < 10000) {
+        list.style.visibility = "visible";
+        fuelStatus.innerHTML="Fuel level too low for launch";
         launchStatus.style.color="red";
         launchStatus.innerHTML="Shuttle not ready for launch"
     } else {document.getElementById("launchStatus").style.color="green";
     launchStatus.innerHTML="Shuttle is ready for launch"};
         
-    }
+    };
     
 
 
