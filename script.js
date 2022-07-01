@@ -16,7 +16,7 @@ window.addEventListener("load", function() {
        
       let aPlanet = pickPlanet(listedPlanets);
        
-      addDestinationInfo(document, aPlanet.name, aPlanet.diameter, aPlanet.star, aPlanet.distance, aPlanet.moons, aPlanet.imageUrl)
+      addDestinationInfo(document, aPlanet.name, aPlanet.diameter, aPlanet.star, aPlanet.distance, aPlanet.moons, aPlanet.image)
 
        let form = document.querySelector("form");
        let list= document.getElementById("faultyItems");
