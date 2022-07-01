@@ -8,13 +8,13 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
    
                 <h2>Mission Destination</h2>
                 <ol>
-                    <li>Name: ${json.name}</li>
-                    <li>Diameter: ${json.diameter} </li>
-                    <li>Star: ${json.star}</li>
-                    <li>Distance from Earth: ${json.distance} </li>
-                    <li>Number of Moons: ${json.moons} </li>
+                    <li>Name: ${name}</li>
+                    <li>Diameter: ${diameter} </li>
+                    <li>Star: ${star}</li>
+                    <li>Distance from Earth: ${distance} </li>
+                    <li>Number of Moons: ${moons} </li>
                 </ol>
-                <img src="${json.image}">
+                <img src="${imageUrl}">
                     `;
    
 }
@@ -34,10 +34,10 @@ function validateInput(testInput) {
  
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-    let pilot = document.getElementById("input[name=pilotName.]");   
-    let copilot= document.getElementById("input[name=copilotName]");
-       let fuelLevel = document.getElementById("input[name=fuelLevel]");
-       let cargoLevel = document.getElementById("input[name=cargoMass]");
+    let pilotStatus = document.getElementById("pilotStatus]");   
+    let copilotStatus= document.getElementById("copilotStatus");
+       let fuelStatus = document.getElementById("fuelStatus");
+       let cargoLevelStatus = document.getElementById("cargoStatus");
      
     
     let result = validateInput(pilot)
@@ -95,7 +95,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     }
     if (cargoLevel > 10000) {
         document.getElementById("faultyItems").style.visibility = "visible";
-        fuelStatus.innerHTML="Too much mass for the shuttle to take off.";
+        cargoLevelStatus.innerHTML="Too much mass for the shuttle to take off.";
         document.getElementById("launchStatus").style.color="red";
         launchStatus.innerHTML="Shuttle not ready for launch"
     }
@@ -110,17 +110,22 @@ async function myFetch() {
     let planetsReturned;
 
     planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
-         response.json().then(funtion(json),{
+        if (response.status >= 400) {
+            throw new Error ("Planet not found.");
+        } else {
+            return response.json();
+        }
 
-         })
+    } )
+         return planetsReturned;
+        };
 
-        });
+    
 
-    return planetsReturned;
-}
 
 function pickPlanet(planets) {
-    return Math.floor(Math.random(planetsReturned) *6);
+    let random = Math.floor(Math.random() *6);
+return planets[random];
 }
 
 

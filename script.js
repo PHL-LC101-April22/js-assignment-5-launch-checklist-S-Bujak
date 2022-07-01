@@ -1,6 +1,6 @@
 // Write your JavaScript code here!
 
-const { pickPlanet, myFetch } = require("./scriptHelper");
+//const { pickPlanet, myFetch } = require("./scriptHelper");
 
 window.addEventListener("load", function() {
 
@@ -18,10 +18,10 @@ window.addEventListener("load", function() {
        
       addDestinationInfo(document, aPlanet.name, aPlanet.diameter, aPlanet.star, aPlanet.distance, aPlanet.moons, aPlanet.imageUrl)
 
-       let form = document.querySelector("testForm");
-   form.addEventListener("formSubmit", function(event){
+       let form = document.querySelector("form");
+   form.addEventListener("submit", function(event){
     event.preventDefault();
-    let pilot = document.querySelector("input[name=pilotName.]").value;   
+    let pilot = document.querySelector("input[name=pilotName]").value;   
  let copilot= document.querySelector("input[name=copilotName]").value;
     let fuelLevel = document.querySelector("input[name=fuelLevel]").value;
     let cargoLevel = document.querySelector("input[name=cargoMass]").value;
